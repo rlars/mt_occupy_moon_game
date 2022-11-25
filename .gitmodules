@@ -1,0 +1,33 @@
+[submodule "mods/3d_armor"]
+	path = mods/3d_armor
+	url = https://github.com/minetest-mods/3d_armor
+[submodule "mods/basic_materials"]
+	path = mods/basic_materials
+	url = https://github.com/mt-mods/basic_materials
+[submodule "mods/pipeworks"]
+	path = mods/pipeworks
+	url = https://github.com/mt-mods/pipeworks
+[submodule "mods/scifi_nodes"]
+	path = mods/scifi_nodes
+	url = https://github.com/D00Med/scifi_nodes
+[submodule "mods/vacuum"]
+	path = mods/vacuum
+	url = https://github.com/mt-mods/vacuum
+[submodule "mods/spacesuit"]
+	path = mods/spacesuit
+	url = https://github.com/mt-mods/spacesuit
+[submodule "mods/technic"]
+	path = mods/technic
+	url = https://github.com/minetest-mods/technic
+[submodule "mods/omg_moonrealm"]
+	path = mods/omg_moonrealm
+	url = https://github.com/rlars/mt_omg_moonrealm
+[submodule "mods/mt_weld_all_bot"]
+	path = mods/mt_weld_all_bot
+	url = https://github.com/rlars/mt_weld_all_bot
+[submodule "mods/mt_zones"]
+	path = mods/mt_zones
+	url = https://github.com/rlars/mt_zones
+[submodule "mods/mt_omg_missions"]
+	path = mods/mt_omg_missions
+	url = https://github.com/rlars/mt_omg_missions
