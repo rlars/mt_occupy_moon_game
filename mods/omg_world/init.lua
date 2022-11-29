@@ -3,6 +3,42 @@ omg_world_path = minetest.get_modpath("omg_world")
 dofile(omg_world_path.."/crafting.lua");
 
 
+
+local function give_or_drop_item(player, itemstack)
+    local inv = minetest.get_inventory({type="player", name=player:get_player_name()})
+    local remaining = inv:add_item("main", itemstack)
+    minetest.add_item(player:get_pos(), remaining)
+end
+
+-- allow player to use an air bottle to fill their suit
+local function refill_player_suit(itemstack, player, pointed_thing)
+	local name, invs = armor:get_valid_player(player, "[refill_spacesuit]")
+	if not name then
+		return
+	end
+    for i, item in ipairs(invs:get_list("armor")) do
+		if item and item:get_name() ~= "" then
+			if item:get_name() == "spacesuit:helmet" or
+			   item:get_name() == "spacesuit:chestplate" or
+			   item:get_name() == "spacesuit:pants" or
+			   item:get_name() == "spacesuit:boots" then
+				local max_refill = math.min(item:get_wear(), 65535)
+				armor:damage(player, i, item, -max_refill)
+			end
+		end
+	end
+	
+	itemstack:set_count(itemstack:get_count() - 1)
+	give_or_drop_item(player, "vessels:steel_bottle")
+	return itemstack
+end
+
+minetest.override_item("vacuum:air_bottle", {
+	on_secondary_use = refill_player_suit,
+	on_place = refill_player_suit,
+})
+
+
 -- Spawn newplayer function
 
 minetest.register_on_newplayer(function(player)
@@ -40,3 +76,14 @@ minetest.register_on_respawnplayer(function(player)
 end)
 
 
+-- moon physics: low gravity
+minetest.register_on_joinplayer(function(player)
+	player_monoids.gravity:add_change(player, 0.2, "omg_world:physics")
+end)
+
+-- the spacesuit is heavy, player can only make smaller jumps with it
+local spacesuit_chestplate_groups = minetest.registered_items["spacesuit:chestplate"].groups
+spacesuit_chestplate_groups["physics_jump"] = -0.4
+minetest.override_item("spacesuit:chestplate", {
+	groups = spacesuit_chestplate_groups
+})

@@ -31,3 +31,6 @@
 [submodule "mods/weld_all_bot"]
 	path = mods/weld_all_bot
 	url = https://github.com/rlars/mt_weld_all_bot
+[submodule "mods/player_monoids"]
+	path = mods/player_monoids
+	url = https://github.com/minetest-mods/player_monoids
