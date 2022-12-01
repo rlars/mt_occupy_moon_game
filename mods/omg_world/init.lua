@@ -1,7 +1,9 @@
 omg_world_path = minetest.get_modpath("omg_world")
 
 dofile(omg_world_path.."/crafting.lua");
-
+dofile(omg_world_path.."/technic_ores.lua");
+dofile(omg_world_path.."/technic_ores_worldgen.lua");
+dofile(omg_world_path.."/version_update_replacements.lua");
 
 
 local function give_or_drop_item(player, itemstack)
@@ -87,3 +89,4 @@ spacesuit_chestplate_groups["physics_jump"] = -0.4
 minetest.override_item("spacesuit:chestplate", {
 	groups = spacesuit_chestplate_groups
 })
+
