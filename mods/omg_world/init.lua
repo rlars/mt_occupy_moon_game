@@ -4,6 +4,8 @@ dofile(omg_world_path.."/crafting.lua");
 dofile(omg_world_path.."/technic_ores.lua");
 dofile(omg_world_path.."/technic_ores_worldgen.lua");
 dofile(omg_world_path.."/version_update_replacements.lua");
+dofile(omg_world_path.."/help_description.lua");
+dofile(omg_world_path.."/help_formspec.lua");
 
 
 local function give_or_drop_item(player, itemstack)
@@ -55,6 +57,7 @@ minetest.register_on_newplayer(function(player)
 		armor:equip(player, ItemStack("spacesuit:chestplate"))
 		armor:equip(player, ItemStack("spacesuit:pants"))
 		armor:equip(player, ItemStack("spacesuit:boots"))
+		show_help(player)
 	end)
 	inv:add_item("main", "omg_missions:landing_site_marker")
 end)
@@ -81,6 +84,10 @@ end)
 -- moon physics: low gravity
 minetest.register_on_joinplayer(function(player)
 	player_monoids.gravity:add_change(player, 0.2, "omg_world:physics")
+
+	local formspec = player:get_inventory_formspec()
+	formspec = formspec .. "style_type[button;font_size=60;font=mono,bold]button[0,0;1.0,1.0;help;?]"
+	player:set_inventory_formspec(formspec)
 end)
 
 -- the spacesuit is heavy, player can only make smaller jumps with it
@@ -89,4 +96,3 @@ spacesuit_chestplate_groups["physics_jump"] = -0.4
 minetest.override_item("spacesuit:chestplate", {
 	groups = spacesuit_chestplate_groups
 })
-
