@@ -3,6 +3,7 @@ omg_world_path = minetest.get_modpath("omg_world")
 dofile(omg_world_path.."/crafting.lua");
 dofile(omg_world_path.."/technic_ores.lua");
 dofile(omg_world_path.."/technic_ores_worldgen.lua");
+dofile(omg_world_path.."/technic_customize_solar_array.lua");
 dofile(omg_world_path.."/version_update_replacements.lua");
 dofile(omg_world_path.."/help_description.lua");
 dofile(omg_world_path.."/help_formspec.lua");
